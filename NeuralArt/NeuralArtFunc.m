@@ -15,7 +15,7 @@ content_layer = {'conv4_2'};
 
 style_weights = [1 1 1 1 1 0.05];
 tv_norm = 0.001;
-use_color_prior = true;
+use_color_prior = false;
 num_cluster=6;
 color_prior = 0.5;
 long_size = 512;
