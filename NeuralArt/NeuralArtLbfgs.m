@@ -47,7 +47,7 @@ use_cv_norm = true;
 cv_norm = 0.001;
 
 % Use minFunc to minimize the function
-addpath minFunc/
+addpath minFunc/minFunc/
 options.Method = 'lbfgs'; % Here, we use L-BFGS to optimize our cost
                           % function. Generally, for minFunc to work, you
                           % need a function pointer with two outputs: the
