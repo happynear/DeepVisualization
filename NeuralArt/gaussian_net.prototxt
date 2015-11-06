@@ -1,0 +1,25 @@
+name: "gaussian_net"
+input: "data"
+input_dim: 1
+input_dim: 3
+input_dim: 270
+input_dim: 512
+layers {
+ name: "gaussian_prior"
+  type: CONVOLUTION
+  bottom: "data"
+  top: "gaussian_prior"
+  convolution_param {
+    num_output: 18
+    kernel_size: 1
+    stride: 1
+	weight_filler {
+      type: "constant"
+      value: 0
+	  }
+    bias_filler {
+      type: "constant"
+      value: 0
+    }
+  }
+}

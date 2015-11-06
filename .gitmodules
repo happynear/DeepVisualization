@@ -1,0 +1,3 @@
+[submodule "NeuralArt/minFunc"]
+	path = NeuralArt/minFunc
+	url = https://github.com/ganguli-lab/minFunc
