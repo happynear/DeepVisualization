@@ -26,14 +26,14 @@ function [style_generate_prototxt, style_pattern, content_pattern, obj] = MakeSt
     
     fprintf(fid,'%s\r\n',original_net_model);
     
-    covariance_file = '../PrototxtGen/covariance.prototxt';
-    covariance_content = fileread(covariance_file);
+    gram_file = '../PrototxtGen/gram.prototxt';
+    gram_content = fileread(gram_file);
     euclideanloss_file = '../PrototxtGen/smoothL1Loss.prototxt';
     euclideanloss_content = fileread(euclideanloss_file);
     for i = 1 : length(style_layer)
-        covariance_layer = strrep(covariance_content,'{num}',num2str(i));
-        covariance_layer = strrep(covariance_layer,'{bottom_name}',style_layer{i});
-        fprintf(fid,'%s\r\n',covariance_layer);
+        gram_layer = strrep(gram_content,'{num}',num2str(i));
+        gram_layer = strrep(gram_layer,'{bottom_name}',style_layer{i});
+        fprintf(fid,'%s\r\n',gram_layer);
     end;
     fclose(fid);
     
@@ -51,7 +51,7 @@ function [style_generate_prototxt, style_pattern, content_pattern, obj] = MakeSt
     
     style_pattern = cell(length(style_layer),1);
     for i = 1:length(style_layer)
-        style_pattern{i} = style_net.blob_vec(style_net.name2blob_index(['cov' num2str(i)])).get_data();
+        style_pattern{i} = style_net.blob_vec(style_net.name2blob_index(['gram' num2str(i)])).get_data();
     end;
     
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%get content pattern
@@ -117,11 +117,11 @@ function [style_generate_prototxt, style_pattern, content_pattern, obj] = MakeSt
     fprintf(fid,'%s\r\n',original_net_model);
     
     for i = 1 : length(style_layer)
-        covariance_layer = strrep(covariance_content,'{num}',num2str(i));
-        covariance_layer = strrep(covariance_layer,'{bottom_name}',style_layer{i});
-        fprintf(fid,'%s\r\n',covariance_layer);
+        gram_layer = strrep(gram_content,'{num}',num2str(i));
+        gram_layer = strrep(gram_layer,'{bottom_name}',style_layer{i});
+        fprintf(fid,'%s\r\n',gram_layer);
         euclidean_layer = strrep(euclideanloss_content,'{num}',num2str(i));
-        euclidean_layer = strrep(euclidean_layer,'{bottom1}',['cov' num2str(i)]);
+        euclidean_layer = strrep(euclidean_layer,'{bottom1}',['gram' num2str(i)]);
         euclidean_layer = strrep(euclidean_layer,'{bottom2}',['style_pattern' num2str(i)]);
         euclidean_layer = strrep(euclidean_layer,'{loss_weight}',num2str(style_weights(i)));
         fprintf(fid,'%s\r\n',euclidean_layer);

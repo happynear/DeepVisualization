@@ -7,8 +7,8 @@ caffe.set_device(gpu_id);
 
 % original_file = 'D:\deepLearning\caffe-windows\matlab\demo\Inceptionism\googlenet_neuralart.prototxt';
 % net_weights = 'D:\deeplearning\caffe-windows\examples\GoogLeNet\imagenet_googlenet.caffemodel';
-original_file = 'D:\deepLearning\caffe-windows\matlab\demo\NeuralArt\VGG_16_nueralart.prototxt';
-net_weights = 'D:\deepLearning\caffe-windows\matlab\demo\NeuralArt\VGG16_thinned_net.caffemodel';
+original_file = 'VGG_16_nueralart.prototxt';
+net_weights = 'VGG16_thinned_net.caffemodel';
 % style_layer = {'icp2_in','icp3_out','icp5_out','icp7_out','icp9_out'};
 style_layer = {'conv1_1','conv2_1','conv3_1','conv4_1','conv5_1'};
 style_weights = [1 1 1 1 1 0.05];
@@ -29,7 +29,7 @@ imshow(content_image);
 title('content image');
 % content_image = imresize(content_image,0.25,'bilinear');
 % content_image = content_image(end-199:end,1:200,:);
-[style_generate_prototxt, style_pattern, content_pattern] = MakeStylePrototxt(original_file, net_weights, style_layer, style_weights, content_layer, style_image, content_image);
+[style_generate_prototxt, style_pattern, content_pattern] = MakeStylePrototxt(original_file, net_weights, style_layer, style_weights, content_layer, style_image, content_image, 0);
 
 forward_input = cell(length(style_pattern)+2,1);
 forward_input(3:end) = style_pattern;

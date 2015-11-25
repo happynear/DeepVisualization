@@ -1,0 +1,6 @@
+layer {
+  name: "gram{num}"
+  type: "Gram"
+  bottom: "{bottom_name}"
+  top: "gram{num}"
+}
