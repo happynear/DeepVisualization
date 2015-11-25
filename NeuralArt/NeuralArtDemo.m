@@ -2,7 +2,7 @@
 %% It's not very good now.
 caffe.reset_all();
 caffe.set_mode_gpu();
-gpu_id = 1;  % we will use the first gpu in this demo
+gpu_id = 0;  % we will use the first gpu in this demo
 caffe.set_device(gpu_id);
 
 % original_file = 'D:\deepLearning\caffe-windows\matlab\demo\Inceptionism\googlenet_neuralart.prototxt';
