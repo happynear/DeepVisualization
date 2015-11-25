@@ -1,0 +1,7 @@
+#google log
+*.INFO
+*.WARNING
+*.ERROR
+*.FATAL
+
+log
