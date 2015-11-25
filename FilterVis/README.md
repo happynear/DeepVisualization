@@ -9,10 +9,18 @@ I am attempting to reduce the parameters or find a way to automatically set them
 
 # Gallery
 
-AlexNet: ![AlexNet](gallery/alexnet.png)
+AlexNet:
 
-VGG: ![VGG](gallery/vgg.png)
+![AlexNet](gallery/alexnet.png)
 
-GoogLeNet conv2: ![conv2](gallery/googlenet-conv2.png)
+VGG:
 
-GoogLeNet Inceptions: ![inception](gallery/inception.png)
+![VGG](gallery/vgg.png)
+
+GoogLeNet conv2:
+
+![conv2](gallery/googlenet-conv2.png)
+
+GoogLeNet Inceptions:
+
+![inception](gallery/inception.png)
