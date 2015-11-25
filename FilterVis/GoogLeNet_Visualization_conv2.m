@@ -1,3 +1,8 @@
+% Visualize all the conv2 filters in bvlc_googlenet. 
+% This code is messay, I will refactor it in the future.
+% Based on paper:
+% Feng Wang, Haijun Liu, Jian Cheng, 
+% Visualizing Deep Neural Network by Alternately Image Blurring and Deblurring
 caffe.reset_all();
 caffe.set_mode_gpu();
 gpu_id = 1;  % we will use the first gpu in this demo

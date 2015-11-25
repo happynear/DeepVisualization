@@ -1,4 +1,18 @@
 function ShowMidFilter(original_prototxt, net_weights, layer_name, channels, filter_id, param)
+% Visualize the mid-level filters. Based on paper:
+% Feng Wang, Haijun Liu, Jian Cheng, 
+% Visualizing Deep Neural Network by Alternately Image Blurring and Deblurring
+%
+% original_prototxt: The path to the network definition file. Please refer
+%   to the googlenet.prototxt to modify your network.
+% net_weights: The trained network model.
+% layer_name: The layer name which we are willing to visualize.
+% channels: how many feature maps in this layer. Maybe we can remove this
+%   parameter in the future.
+% filter_id: Which filter we want to visualize. It should not be greater
+%   than channels.
+% param: Some hyper-paramters to optimize the network. See demo.m for
+%   detail list.
 caffe.reset_all();
 caffe.set_mode_gpu();
 gpu_id = 0;  % we will use the first gpu in this demo
@@ -33,7 +47,7 @@ mean_image = permute(repmat(vgg_mean',[1,width,height]),[2,3,1]);
 input_data = randn(width, height, 3, 1, 'single');
 
 original_net_model = fileread(original_prototxt);
-original_net_model = strrep(original_net_model,'negative_slope:0#4c','negative_slope:1#4c');
+original_net_model = strrep(original_net_model,['negative_slope:0#' layer_name(11:12)],['negative_slope:1#' layer_name(11:12)]);
 
 visualize_prototxt = strrep(original_prototxt,'.prototxt','_visualize.prototxt');
 

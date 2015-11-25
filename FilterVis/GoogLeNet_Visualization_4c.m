@@ -1,3 +1,10 @@
+% Visualize all the inception_4c filters in bvlc_googlenet. 
+% Because of the size, I splitted the visualization map into 32*16 grids,
+% with each grid contains visualization of 4 filters.
+% This code is messay, I will refactor it in the future.
+% Based on paper:
+% Feng Wang, Haijun Liu, Jian Cheng, 
+% Visualizing Deep Neural Network by Alternately Image Blurring and Deblurring
 caffe.reset_all();
 caffe.set_mode_gpu();
 gpu_id = 0;  % we will use the first gpu in this demo
@@ -26,8 +33,8 @@ hori_num = 16;
 total_map = reshape(1:vert_num*hori_num,hori_num,vert_num)';
 vert_split = vert_num/16;
 hori_split = hori_num/8;
-for vert_ind = 13:16
-for hori_ind = 1:1
+for vert_ind = 1:16
+for hori_ind = 1:8
 %     disp([layer_name '_' num2str(vert_ind) num2str(hori_ind) '.png']);
 %     if exist([layer_name '_' num2str(vert_ind) num2str(hori_ind) '.png'],'file')
 %         continue;
