@@ -11,7 +11,4 @@ Usage
 ===========
 I exploited this on my laptop and it's too slow to tune the parameters to be the best. The performance is not very good right now. However, you can still try it.
 
-For caffe linux users: I have written a new layer called [*covariance layer*](https://github.com/happynear/caffe-windows/blob/master/src/caffe/layers/covariance_layer.cpp) to calculate the covariance matrix* of a feature map. If you want to run this code with your own caffe, please add the layer to your caffe project.
-
-
-*: Actually, I haven't done the mean substraction, so it should be named as correlation matrix?
+For caffe linux users: I have written a new layer called [*gram layer*](https://github.com/happynear/caffe-windows/blob/master/src/caffe/layers/gram_layer.cpp) to calculate the gram matrix of a feature map. If you want to run this code with your own caffe, please add this layer to your caffe project.
