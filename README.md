@@ -1,6 +1,6 @@
 # DeepVisualization
 
-Some interesting visualiztion using Caffe and Matlab.
+Some interesting visualization demos using Caffe and Matlab. 
 
  - FaceVis
 
@@ -24,4 +24,5 @@ Some interesting visualiztion using Caffe and Matlab.
 > A Neural Algorthm of Artistic Style' by Leon Gatys, Alexander Ecker, and Matthias Bethge (http://arxiv.org/abs/1508.06576).
 
  - PrototxtGen
+ 
   Some modules used to generate a prototxt for Caffe.
