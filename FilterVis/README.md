@@ -9,7 +9,7 @@ I am attempting to reduce the parameters or find a way to automatically set them
 
 # Gallery
 
-AlexNet: ![AlexNet](gallery/AlexNet.png)
+AlexNet: ![AlexNet](gallery/alexnet.png)
 
 VGG: ![VGG](gallery/vgg.png)
 
