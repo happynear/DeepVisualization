@@ -2,7 +2,7 @@
 %% It's not very good now.
 caffe.reset_all();
 caffe.set_mode_gpu();
-gpu_id = 1;  % we will use the first gpu in this demo
+gpu_id = 0;  % we will use the first gpu in this demo
 caffe.set_device(gpu_id);
 
 % original_file = 'D:\deepLearning\caffe-windows\matlab\demo\Inceptionism\googlenet_neuralart.prototxt';
@@ -11,15 +11,17 @@ original_file = 'VGG_16_nueralart.prototxt';
 net_weights = 'VGG16_thinned_net.caffemodel';
 % style_layer = {'icp2_in','icp3_out','icp5_out','icp7_out','icp9_out'};
 style_layer = {'conv1_1','conv2_1','conv3_1','conv4_1','conv5_1'};
-style_weights = [1 1 1 1 1 0.05];
+style_weights = [1 1 1 1 1 0.1];
 content_layer = {'conv4_2'};
-style_image = imread('d:\065ac56c08f1d46ebc00835217ba0fb2_b.png');
-content_image = imread('d:\QQͼƬ20150923143657.jpg');
+style_image = imread('material\starry_night.jpg');
+content_image = imread( 'material\tubingen.jpg');
 long_size = 512;
 if size(content_image,1) > size(content_image,2)
     content_image = imresize(content_image,[long_size, size(content_image,2) / size(content_image,1) * long_size]);
+    style_image = imresize(style_image,[long_size, size(style_image,2) / size(style_image,1) * long_size]);
 else
     content_image = imresize(content_image,[size(content_image,1) / size(content_image,2) * long_size, long_size]);
+    style_image = imresize(style_image,[size(style_image,1) / size(style_image,2) * long_size, long_size]);
 end;
 figure(1);
 imshow(style_image);
@@ -53,7 +55,7 @@ input_data = randn(size(mean_image,1), size(mean_image,2), 3, 1, 'single')*50;
 % input_data = im_data;
 
 use_clip = false;
-use_tv_norm = true;
+use_tv_norm = false;
 use_weight_decay = false;
 use_gradient_blur = false;
 use_dropout = false;
@@ -68,7 +70,7 @@ prob = stylegen_net.forward(forward_input);
 % c2 = stylegen_content_pattern(:,:,1);
 blur_data = zeros(size(input_data));
 base_lr = 10;
-max_lr = 50;
+max_lr = 100;
 lambda1 = 0.00001;
 lambda2 = 0.01;
 forward_input(1) = {input_data};
@@ -124,11 +126,6 @@ while 1
         Gy = (I(:,2:end-1,:) - I(:,1:end-2,:)) - (I(:,3:end,:) - I(:,2:end-1,:));
         Gy = [(I(:,1,:) - I(:,2,:)) Gy (I(:,end,:) - I(:,end-1,:))];
         input_data(:,:,:,1) = input_data(:,:,:,1) - lr * lambda2 * (Gx + Gy);
-%         if rand()>0.5
-%             input_data(:,:,:,1) = input_data(:,:,:,1) - lr * lambda2 * Gx;
-%         else
-%             input_data(:,:,:,1) = input_data(:,:,:,1) - lr * lambda2 * Gy;
-%         end;
     end;
     if use_weight_decay
         input_data(:,:,:,1) = input_data(:,:,:,1) - lr * lambda1 * I;
@@ -160,7 +157,10 @@ while 1
         output = output(:, :, [3, 2, 1]);
         output = permute(output, [2 1 3]);
         imshow(uint8(output));
-        I = output;
+        if iter>100 && max(abs(output(:) - last_output(:))) < 1
+            break;
+        end;
+        last_output = output;
         title('generated image');
     end;
     if this_prob>last_prob

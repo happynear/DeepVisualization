@@ -2,14 +2,14 @@ name: "StyleGen"
 input: "data"
 input_dim: 1
 input_dim: 3
-input_dim: 270
 input_dim: 512
+input_dim: 405
 
 input: "content"
 input_dim: 1
 input_dim: 512
-input_dim: 34
 input_dim: 64
+input_dim: 51
 
 input: "style_pattern1"
 input_dim: 1
@@ -320,71 +320,71 @@ layer {
 }
 
 layer {
-  name: "cov1"
-  type: "Covariance"
+  name: "gram1"
+  type: "Gram"
   bottom: "conv1_1"
-  top: "cov1"
+  top: "gram1"
 }
 layer {
   name: "smoothl11"
   type: "SmoothL1Loss"
-  bottom: "cov1"
+  bottom: "gram1"
   bottom: "style_pattern1"
   top: "smoothl11"
   loss_weight: 1
 }
 layer {
-  name: "cov2"
-  type: "Covariance"
+  name: "gram2"
+  type: "Gram"
   bottom: "conv2_1"
-  top: "cov2"
+  top: "gram2"
 }
 layer {
   name: "smoothl12"
   type: "SmoothL1Loss"
-  bottom: "cov2"
+  bottom: "gram2"
   bottom: "style_pattern2"
   top: "smoothl12"
   loss_weight: 1
 }
 layer {
-  name: "cov3"
-  type: "Covariance"
+  name: "gram3"
+  type: "Gram"
   bottom: "conv3_1"
-  top: "cov3"
+  top: "gram3"
 }
 layer {
   name: "smoothl13"
   type: "SmoothL1Loss"
-  bottom: "cov3"
+  bottom: "gram3"
   bottom: "style_pattern3"
   top: "smoothl13"
   loss_weight: 1
 }
 layer {
-  name: "cov4"
-  type: "Covariance"
+  name: "gram4"
+  type: "Gram"
   bottom: "conv4_1"
-  top: "cov4"
+  top: "gram4"
 }
 layer {
   name: "smoothl14"
   type: "SmoothL1Loss"
-  bottom: "cov4"
+  bottom: "gram4"
   bottom: "style_pattern4"
   top: "smoothl14"
   loss_weight: 1
 }
 layer {
-  name: "cov5"
-  type: "Covariance"
+  name: "gram5"
+  type: "Gram"
   bottom: "conv5_1"
-  top: "cov5"
+  top: "gram5"
 }
 layer {
   name: "smoothl15"
   type: "SmoothL1Loss"
-  bottom: "cov5"
+  bottom: "gram5"
   bottom: "style_pattern5"
   top: "smoothl15"
   loss_weight: 1
@@ -395,5 +395,5 @@ layer {
   bottom: "conv4_2"
   bottom: "content"
   top: "smoothl1_content"
-  loss_weight: 0.05
+  loss_weight: 0.1
 }

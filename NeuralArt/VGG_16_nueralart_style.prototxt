@@ -2,8 +2,8 @@ name: "StylePatternGen"
 input: "data"
 input_dim: 1
 input_dim: 3
-input_dim: 320
-input_dim: 512
+input_dim: 400
+input_dim: 279
 
 force_backward: true
 layer {
@@ -284,32 +284,32 @@ layer {
 }
 
 layer {
-  name: "cov1"
-  type: "Covariance"
+  name: "gram1"
+  type: "Gram"
   bottom: "conv1_1"
-  top: "cov1"
+  top: "gram1"
 }
 layer {
-  name: "cov2"
-  type: "Covariance"
+  name: "gram2"
+  type: "Gram"
   bottom: "conv2_1"
-  top: "cov2"
+  top: "gram2"
 }
 layer {
-  name: "cov3"
-  type: "Covariance"
+  name: "gram3"
+  type: "Gram"
   bottom: "conv3_1"
-  top: "cov3"
+  top: "gram3"
 }
 layer {
-  name: "cov4"
-  type: "Covariance"
+  name: "gram4"
+  type: "Gram"
   bottom: "conv4_1"
-  top: "cov4"
+  top: "gram4"
 }
 layer {
-  name: "cov5"
-  type: "Covariance"
+  name: "gram5"
+  type: "Gram"
   bottom: "conv5_1"
-  top: "cov5"
+  top: "gram5"
 }

@@ -2,8 +2,8 @@ name: "ContentNet"
 input: "data"
 input_dim: 1
 input_dim: 3
-input_dim: 270
 input_dim: 512
+input_dim: 405
 
 force_backward: true
 layer {
