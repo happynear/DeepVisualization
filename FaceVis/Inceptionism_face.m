@@ -22,13 +22,13 @@ if isempty(mean_file)
 else
     mean_image = caffe.read_mean(mean_file);
 end;
-People_ID = 1;
+for People_ID = 1:10575
 
 % mean_image = mean_image(17:240,17:240,:);
 % mean_image = mean_image + randn(size(mean_image));
 input_data = zeros(size(mean_image,1), size(mean_image,2), 1, 1, 'single');
 
-mean_file = 'D:\deepLearning\Visualization\Inceptionism\web_mean.proto';
+mean_file = 'webface_mean.proto';
 mean_face = caffe.read_mean(mean_file);
 mean_face = mean_face / 256;
 input_data(:,:,1,1) = imresize(mean_face,[128,128]);
@@ -146,7 +146,7 @@ while 1
     prob = train_net.forward({input_data});
     
     this_prob = prob{1}(max_idx);
-    fprintf('iter=%d,lr=%f,prob1=%f,last_prob=%f\n',iter,lr,prob{1}(max_idx),last_prob);
+    fprintf('id=%d,iter=%d,lr=%f,prob1=%f,last_prob=%f\n',People_ID,iter,lr,prob{1}(max_idx),last_prob);
     iter = iter + 1;
     
     if mod(iter,100)==0
@@ -179,8 +179,7 @@ while 1
         break;
     end;
 end;
-figure(2);
-% imshow(uint8(mean_image + input_data));
 output = input_data(:,:,:,1);
 output = output';
-imshow(output);
+imwrite(output, ['gallery/' num2str(People_ID) '.png']);
+end;
