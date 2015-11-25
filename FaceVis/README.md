@@ -14,13 +14,14 @@ Mr Bean:
 
 Yun-Fat Chow:
 ![Yun-Fat Chow](gallery/Yun-Fat Chow.png)
-Bingbing Li:
-![Bingbing Li](gallery/Bingbing Li.png)
-
-Bingbing Fan:
-![Bingbing Fan](gallery/Bingbing Fan.png)
 Anne Hathaway
 ![Anne Hathaway](gallery/Anne Hathaway.png)
+
+Bingbing Li:
+![Bingbing Li](gallery/Bingbing Li.png)
+Bingbing Fan:
+![Bingbing Fan](gallery/Bingbing Fan.png)
+
 
 Yes, they are not as beautiful as they in the real world. If you feel uncomfortable with these images,
 please contact me, I will remove them.
