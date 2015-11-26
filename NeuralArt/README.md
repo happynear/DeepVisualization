@@ -18,3 +18,5 @@ Gallery
 style: starry night <br> content: tubingen
 
 ![star-tubingen](gallery/star-tubingen.png)
+
+I haven't add total-variance norm prior on this image because it is difficult for my laptop to tune the parameter of it, so this image may be not very smoothy.
