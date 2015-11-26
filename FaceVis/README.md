@@ -5,7 +5,7 @@ https://github.com/AlfredXiangWu/face_verification_experiment .
 This model is trained with CASIA-webface, People_ID can be set from 1 
 to 10575, to get the memorized face of the corresponding person.
 
-Here are some generated face memoriezed by the recoginition model mentioned above :
+Here are some generated faces memorized by the recoginition model mentioned above :
 
 Bruce Lee:
 ![Bruce Lee](gallery/Bruce Lee.png)
