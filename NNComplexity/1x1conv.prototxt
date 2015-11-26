@@ -32,11 +32,11 @@ layer {
   bn_param {
 	scale_filler {
 	  type: "constant"
-	  value: 3
+	  value: 1
 	}
 	shift_filler {
 	  type: "gaussian"
-	  std: 2
+	  std: 1
 #      type: "constant"
 #	  value: 0
 	}
