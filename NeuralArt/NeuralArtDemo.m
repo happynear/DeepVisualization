@@ -14,7 +14,7 @@ style_layer = {'conv1_1','conv2_1','conv3_1','conv4_1','conv5_1'};
 style_weights = [1 1 1 1 1 0.1];
 content_layer = {'conv4_2'};
 style_image = imread('material\starry_night.jpg');
-content_image = imread( 'material\tubingen.jpg');
+content_image = imread( 'material\caobin.jpg');
 long_size = 512;
 if size(content_image,1) > size(content_image,2)
     content_image = imresize(content_image,[long_size, size(content_image,2) / size(content_image,1) * long_size]);
@@ -55,7 +55,7 @@ input_data = randn(size(mean_image,1), size(mean_image,2), 3, 1, 'single')*50;
 % input_data = im_data;
 
 use_clip = false;
-use_tv_norm = false;
+use_tv_norm = true;
 use_weight_decay = false;
 use_gradient_blur = false;
 use_dropout = false;
@@ -72,7 +72,7 @@ blur_data = zeros(size(input_data));
 base_lr = 10;
 max_lr = 100;
 lambda1 = 0.00001;
-lambda2 = 0.01;
+lambda2 = 0.001;
 forward_input(1) = {input_data};
 i = 1;
 while i<=length(prob)
@@ -117,14 +117,14 @@ while 1
         I = input_data(:,:,:,1);
 %         Gx = sign(I(2:end-1,2:end-1,:) - I(1:end-2,2:end-1,:)) - sign(I(3:end,2:end-1,:) - I(2:end-1,2:end-1,:));
 %         Gy = sign(I(2:end-1,2:end-1,:) - I(2:end-1,1:end-2,:)) - sign(I(2:end-1,3:end,:) - I(2:end-1,2:end-1,:));
-%         Gx = smoothL1(I(2:end-1,:,:) - I(1:end-2,:,:)) - smoothL1(I(3:end,:,:) - I(2:end-1,:,:));
-%         Gx = [smoothL1(I(1,:,:) - I(2,:,:)); Gx; smoothL1(I(end,:,:) - I(end-1,:,:))];
-%         Gy = smoothL1(I(:,2:end-1,:) - I(:,1:end-2,:)) - smoothL1(I(:,3:end,:) - I(:,2:end-1,:));
-%         Gy = [smoothL1(I(:,1,:) - I(:,2,:)) Gy smoothL1(I(:,end,:) - I(:,end-1,:))];
-        Gx = (I(2:end-1,:,:) - I(1:end-2,:,:)) - (I(3:end,:,:) - I(2:end-1,:,:));
-        Gx = [(I(1,:,:) - I(2,:,:)); Gx; (I(end,:,:) - I(end-1,:,:))];
-        Gy = (I(:,2:end-1,:) - I(:,1:end-2,:)) - (I(:,3:end,:) - I(:,2:end-1,:));
-        Gy = [(I(:,1,:) - I(:,2,:)) Gy (I(:,end,:) - I(:,end-1,:))];
+        Gx = smoothL1(I(2:end-1,:,:) - I(1:end-2,:,:)) - smoothL1(I(3:end,:,:) - I(2:end-1,:,:));
+        Gx = [smoothL1(I(1,:,:) - I(2,:,:)); Gx; smoothL1(I(end,:,:) - I(end-1,:,:))];
+        Gy = smoothL1(I(:,2:end-1,:) - I(:,1:end-2,:)) - smoothL1(I(:,3:end,:) - I(:,2:end-1,:));
+        Gy = [smoothL1(I(:,1,:) - I(:,2,:)) Gy smoothL1(I(:,end,:) - I(:,end-1,:))];
+%         Gx = (I(2:end-1,:,:) - I(1:end-2,:,:)) - (I(3:end,:,:) - I(2:end-1,:,:));
+%         Gx = [(I(1,:,:) - I(2,:,:)); Gx; (I(end,:,:) - I(end-1,:,:))];
+%         Gy = (I(:,2:end-1,:) - I(:,1:end-2,:)) - (I(:,3:end,:) - I(:,2:end-1,:));
+%         Gy = [(I(:,1,:) - I(:,2,:)) Gy (I(:,end,:) - I(:,end-1,:))];
         input_data(:,:,:,1) = input_data(:,:,:,1) - lr * lambda2 * (Gx + Gy);
     end;
     if use_weight_decay

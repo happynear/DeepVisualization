@@ -42,3 +42,9 @@ layer {
 	}
  }
 }
+layer {
+  name: "actiavation{num}"
+  type: "{activation}"
+  bottom: "bn{num}"
+  top: "bn{num}"
+}

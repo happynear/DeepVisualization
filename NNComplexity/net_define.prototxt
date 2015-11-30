@@ -16,7 +16,7 @@ layer {
     lr_mult: 2
   }
   convolution_param {
-    num_output: 100
+    num_output: 10
     kernel_size: 3
     stride: 1
     weight_filler {
@@ -38,15 +38,21 @@ layer {
   bn_param {
 	scale_filler {
 	  type: "constant"
-	  value: 1
+	  value: 3
 	}
 	shift_filler {
 	  type: "gaussian"
-	  std: 1
+	  std: 2
 #      type: "constant"
 #	  value: 0
 	}
  }
+}
+layer {
+  name: "actiavation1"
+  type: "ReLU"
+  bottom: "bn1"
+  top: "bn1"
 }
 layer {
   name: "conv2"
@@ -60,7 +66,7 @@ layer {
     lr_mult: 2
   }
   convolution_param {
-    num_output: 100
+    num_output: 10
     kernel_size: 3
     stride: 1
     weight_filler {
@@ -82,15 +88,21 @@ layer {
   bn_param {
 	scale_filler {
 	  type: "constant"
-	  value: 1
+	  value: 3
 	}
 	shift_filler {
 	  type: "gaussian"
-	  std: 1
+	  std: 2
 #      type: "constant"
 #	  value: 0
 	}
  }
+}
+layer {
+  name: "actiavation2"
+  type: "ReLU"
+  bottom: "bn2"
+  top: "bn2"
 }
 layer {
   name: "conv3"
@@ -104,8 +116,8 @@ layer {
     lr_mult: 2
   }
   convolution_param {
-    num_output: 100
-    kernel_size: 3
+    num_output: 20
+    kernel_size: 1
     stride: 1
     weight_filler {
       type: "msra"
@@ -126,20 +138,76 @@ layer {
   bn_param {
 	scale_filler {
 	  type: "constant"
-	  value: 1
+	  value: 3
 	}
 	shift_filler {
 	  type: "gaussian"
-	  std: 1
+	  std: 2
 #      type: "constant"
 #	  value: 0
 	}
  }
 }
 layer {
-  name: "output"
+  name: "actiavation3"
+  type: "ReLU"
+  bottom: "bn3"
+  top: "bn3"
+}
+layer {
+  name: "conv4"
   type: "Convolution"
   bottom: "bn3"
+  top: "conv4"
+  param {
+    lr_mult: 1
+  }
+  param {
+    lr_mult: 2
+  }
+  convolution_param {
+    num_output: 20
+    kernel_size: 1
+    stride: 1
+    weight_filler {
+      type: "msra"
+    }
+    bias_filler {
+      type: "gaussian"
+	  std: 0.5
+#      type: "constant"
+#	  value: 0
+    }
+  }
+}
+layer {
+  name: "bn4"
+  type: "BN"
+  bottom: "conv4"
+  top: "bn4"
+  bn_param {
+	scale_filler {
+	  type: "constant"
+	  value: 3
+	}
+	shift_filler {
+	  type: "gaussian"
+	  std: 2
+#      type: "constant"
+#	  value: 0
+	}
+ }
+}
+layer {
+  name: "actiavation4"
+  type: "ReLU"
+  bottom: "bn4"
+  top: "bn4"
+}
+layer {
+  name: "output"
+  type: "Convolution"
+  bottom: "bn4"
   top: "output"
   param {
     lr_mult: 1
