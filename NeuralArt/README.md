@@ -16,7 +16,7 @@ I exploited this on my laptop and it's too slow to tune the parameters to be the
 
 For caffe linux users: I have written a new layer called [*gram layer*](https://github.com/happynear/caffe-windows/blob/master/src/caffe/layers/gram_layer.cpp) to calculate the gram matrix of a feature map. If you want to run this code with your own caffe, please add this layer to your caffe project.
 
-I have replaced the Euclidean loss with smoothL1 loss to get better numerical stability and faster convergence speed. You can change it back to Euclidean loss in `MakeStylePrototxt.m` line 31. With smoothL1 loss, we need only 200 iterations to get a satisfying result, while we need 500 for Euclidean.
+I have replaced the Euclidean loss with smoothL1 loss to get better numerical stability and faster convergence speed. You can change it back to Euclidean loss in `MakeStylePrototxt.m` line 31. With smoothL1 loss, we need only 200 iterations to get a good result, while for Euclidean loss, we need 500 .
 
 Gallery
 ===========
