@@ -1,11 +1,13 @@
 Visualize how complex the neural network's fitting function can achieve, w.r.t. width, depth and structure.
 
+`CNNComplexity.m` is our main script. You can also use `CNNComplexitySave.m` and `run_save.m` to generate more images at once. 
+
 These codes are from a failed work. If you can read Mandarine, please see this blog for details http://blog.csdn.net/happynear/article/details/46583811 .
 I have underestimated the effect of scale & shift in Batch Normalization. **They are very important!**
 
-However, I don't want this work to be thrown into dust basket. I still think we can get some interesting and direct feelings from the generated images. 
+However, I don't want this work to be thrown into dust basket. I still think that we can get some interesting and direct feelings from the generated images. 
 
-Brief Introduction
+Brief Algorithm Description
 ----------
 
 Firstly we take an two channel "slope" image as input.
@@ -14,7 +16,7 @@ Firstly we take an two channel "slope" image as input.
 | ----------------------|:---------------------:|
 | ![1](img/vert.png)    | ![1](img/hori.png)    |
 
-Then we use a randomly initialized (convolutional) nerual network to wrap the slope input to some more complex shape. Note that a neural network is continuous function w.r.t. the input, the output will also be a continuous but more complex image.
+Then we use a randomly initialized (convolutional) nerual network to wrap the slope input to some more complex shapes. Note that a neural network is continuous function w.r.t. the input, the output will also be a continuous but more complex image.
 
 In order to control the range of each layers' output, we add batch normalization after every convolutional layer as introduced in the original paper. BTW, since we have only one input image, the name "batch normalization" is better to be changed to "spatial normalization". Without the spatial normalization, the range of the output will get exponential increasement or decreasement with the depth, which is not what we want.
 
