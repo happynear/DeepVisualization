@@ -12,8 +12,11 @@ caffe.set_mode_gpu();
 gpu_id = 0;  % we will use the first gpu in this demo
 caffe.set_device(gpu_id);
 
-net_model = 'DeepFace_set003_inception.prototxt';% Please, remember to add force_backward:true to this file.
-net_weights = 'D:\project\lfw_face_verification_experiment\model\DeepFace_set003_net_iter.caffemodel';
+% net_model = 'DeepFace_set003_inception.prototxt';% Please, remember to add force_backward:true to this file.
+% net_weights = 'D:\project\lfw_face_verification_experiment\model\DeepFace_set003_net_iter.caffemodel';
+net_model = 'LightenedCNN_B_deploy.prototxt';% Please, remember to add force_backward:true to this file.
+net_weights = 'D:\project\lfw_face_verification_experiment\model\LightenedCNN_B.caffemodel';
+
 mean_file = [];
 
 train_net = caffe.Net(net_model,net_weights,'test');
