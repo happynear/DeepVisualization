@@ -7,6 +7,8 @@ I have underestimated the effect of scale & shift in Batch Normalization. **They
 
 However, I don't want this work to be thrown into dust basket. I still think that we can get some interesting and direct feelings from the generated images. 
 
+Recently, I noticed that there were similar works long ago. This algorithm is called [Compositional pattern-producing network](https://en.wikipedia.org/wiki/Compositional_pattern-producing_network) and some other posts also generates beautiful images, such as http://blog.otoro.net/2016/03/25/generating-abstract-patterns-with-tensorflow/ and http://zhouchang.info/blog/2016-02-02/simple-cppn.html .
+
 Brief Algorithm Description
 ----------
 
