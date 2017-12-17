@@ -1,7 +1,9 @@
 Visualization for the classifier neurons in any networks.
 
 This is the codes for reproducing the results in my paper, 
-Visualizing Deep Neural Network by Alternately Image Blurring and Deblurring (arxiv link comming soon).
+Visualizing Deep Neural Network by Alternately Image Blurring and Deblurring.
+
+http://www.sciencedirect.com/science/article/pii/S0893608017302095
 
 Please feel free to modify the switches and paramters in `inceptionism_big.m` and see what happens. 
 
